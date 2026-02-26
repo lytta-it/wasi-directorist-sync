@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Lytta - Wasi Source Spy
+Diagnostic Script: Lytta - Wasi Source Spy
 Description: Mostra i dati GREZZI originali che arrivano dall'API di Wasi (utile per controllare i nomi dei campi).
 Version: 1.0
 Author: Lytta

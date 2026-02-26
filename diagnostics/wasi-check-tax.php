@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wasi Taxonomy Spy
+Diagnostic Script: Wasi Taxonomy Spy
 Description: Scopre i nomi reali delle categorie e location.
 */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

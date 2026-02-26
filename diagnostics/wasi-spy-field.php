@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Lytta - Campo Spia
+Diagnostic Script: Lytta - Campo Spia
 Description: Trova dove si è nascosta la parola "VERIFICA_QUI".
 Version: 1.0
 */

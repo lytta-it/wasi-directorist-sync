@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Directorist Field Spy
+Diagnostic Script: Directorist Field Spy
 Description: Mostra i nomi reali dei campi nel database.
 Version: 1.0
 */

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wasi Get Types
+Diagnostic Script: Wasi Get Types
 Description: Scarica la lista di tutte le tipologie immobiliari di Wasi.
 */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

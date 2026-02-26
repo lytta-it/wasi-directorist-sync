@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wasi Diagnostics (Last Post)
+Diagnostic Script: Wasi Diagnostics (Last Post)
 Description: Analizza l'ultimo immobile creato (il Test Listing) per verificare i campi.
 Version: 1.1
 */

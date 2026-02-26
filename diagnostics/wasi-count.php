@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wasi Counter
+Diagnostic Script: Wasi Counter
 Description: Mostra il numero totale di immobili presenti su Wasi.
 Version: 1.0
 */

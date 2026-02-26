@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Lytta - Lista Totale Campi
+Diagnostic Script: Lytta - Lista Totale Campi
 Description: Mostra TUTTI i metadati dell'ultimo immobile modificato.
 Version: 2.0
 */

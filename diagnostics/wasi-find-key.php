@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Lytta - Cerca Chiave
+Diagnostic Script: Lytta - Cerca Chiave
 Description: Trova il nome del campo nascosto cercando una parola specifica.
 Version: 1.0
 */
