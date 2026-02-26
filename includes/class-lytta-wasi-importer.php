@@ -21,8 +21,8 @@ class Lytta_Wasi_Importer
 
         $this->config = [
             'post_type' => 'at_biz_dir',
-            'author_id' => !empty($options['author_id']) ? intval($options['author_id']) : 4,
-            'email_report' => !empty($options['email_report']) ? sanitize_email($options['email_report']) : 'info@lytta.it',
+            'author_id' => !empty($options['author_id']) ? intval($options['author_id']) : 1,
+            'email_report' => isset($options['email_report']) ? sanitize_email($options['email_report']) : get_option('admin_email'),
             'enable_email' => true,
             'sync_limit' => !empty($options['sync_limit']) ? intval($options['sync_limit']) : 10,
             'mapping' => !empty($options['mapping']) ? wp_kses_post($options['mapping']) : '',

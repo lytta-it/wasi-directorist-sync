@@ -27,7 +27,8 @@ class Lytta_Wasi_Admin
             'lytta_wasi_plugin_page_section',
             'API Configuration (Wasi to Directorist)',
             function () {
-            echo '<p class="description">Enter your Wasi App credentials below. A valid Company ID and Token are required to sync properties.</p>'; },
+            echo '<p class="description">Enter your Wasi App credentials below. A valid Company ID and Token are required to sync properties.</p>';
+        },
             'lytta_wasi_plugin_page'
         );
 
@@ -96,8 +97,9 @@ class Lytta_Wasi_Admin
     public function email_report_render()
     {
         $options = get_option('lytta_wasi_settings');
-        $val = isset($options['email_report']) ? esc_attr($options['email_report']) : '';
+        $val = isset($options['email_report']) ? esc_attr($options['email_report']) : get_option('admin_email');
         echo "<input type='email' name='lytta_wasi_settings[email_report]' value='{$val}' class='regular-text'>";
+        echo "<p class='description'>Lascia vuoto per disabilitare le notifiche email. Di default usa l'email principale del sito.</p>";
     }
 
     public function sync_limit_render()
@@ -112,9 +114,12 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['sync_frequency']) ? $options['sync_frequency'] : 'twicedaily';
         echo "<select name='lytta_wasi_settings[sync_frequency]'>
-            <option value='hourly' " . selected($val, 'hourly', false) . ">Hourly</option>
-            <option value='twicedaily' " . selected($val, 'twicedaily', false) . ">Twice Daily</option>
-            <option value='daily' " . selected($val, 'daily', false) . ">Daily</option>
+            <option value='hourly' " . selected($val, 'hourly', false) . ">Ogni Ora</option>
+            <option value='every_two_hours' " . selected($val, 'every_two_hours', false) . ">Ogni 2 Ore</option>
+            <option value='every_six_hours' " . selected($val, 'every_six_hours', false) . ">Ogni 6 Ore</option>
+            <option value='twicedaily' " . selected($val, 'twicedaily', false) . ">Due volte al giorno</option>
+            <option value='daily' " . selected($val, 'daily', false) . ">Una volta al giorno</option>
+            <option value='weekly' " . selected($val, 'weekly', false) . ">Una volta a settimana</option>
         </select>";
     }
 

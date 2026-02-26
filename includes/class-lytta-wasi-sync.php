@@ -53,6 +53,15 @@ class Lytta_Wasi_Sync
         $importer = new Lytta_Wasi_Importer();
         add_action('lytta_wasi_cron_event', array($importer, 'run_import'));
         add_shortcode('lytta_sync_manual', array($importer, 'run_import')); // For manual testing via shortcode
+        add_filter('cron_schedules', array($this, 'add_custom_cron_intervals'));
+    }
+
+    public function add_custom_cron_intervals($schedules)
+    {
+        $schedules['every_two_hours'] = array('interval' => 7200, 'display' => 'Every 2 Hours');
+        $schedules['every_six_hours'] = array('interval' => 21600, 'display' => 'Every 6 Hours');
+        $schedules['weekly'] = array('interval' => 604800, 'display' => 'Weekly');
+        return $schedules;
     }
 
     private function init_github_updater()
