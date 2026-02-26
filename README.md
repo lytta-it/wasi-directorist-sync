@@ -57,7 +57,7 @@ The plugin operates on a commercial **Freemium** model. Out of the box, it provi
 
 ## 📦 Installation
 
-1. Copy the URL of this GitHub repository: `https://github.com/lytta-it/wasi-directorist-sync/archive/refs/heads/main.zip`
+1. Copy the URL of this GitHub repository: `https://github.com/lytta-it/wasi-sync-pro/archive/refs/heads/main.zip`
 2. Download the `.zip` file.
 3. In your WordPress Admin Dashboard, navigate to **Plugins > Add New > Upload Plugin**.
 4. Select the downloaded `.zip` file and click **Install Now**.

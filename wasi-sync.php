@@ -5,10 +5,11 @@
  * Description:       Il connettore API definitivo per agenzie immobiliari. Sincronizza Wasi con WordPress usando Directorist o Advanced Custom Fields (ACF).
  * Version:           12.0.0
  * Author:            Lytta Web Agency
- * Author URI:        https://www.lytta.it
+ * Author URI:        https://www.lytta.it/
+ * License: GPLv2 or later
  * Text Domain:       lytta-wasi-sync
  * Domain Path:       /languages
- * GitHub Plugin URI: lytta-it/wasi-directorist-sync
+ * GitHub Plugin URI: https://github.com/lytta-it/wasi-sync-pro
  */
 
 if (!defined('ABSPATH')) {
