@@ -25,25 +25,29 @@ class Lytta_Wasi_Admin
 
         add_settings_section(
             'lytta_wasi_plugin_page_section',
-            'API Configuration (Wasi to Directorist)',
+            'Configurazione Wasi',
             function () {
-            echo '<p class="description">Enter your Wasi App credentials below. A valid Company ID and Token are required to sync properties.</p>';
-        },
+            echo '<p class="description">Inserisci le tue credenziali Wasi per abilitare la sincronizzazione.</p>'; },
             'lytta_wasi_plugin_page'
         );
+
+        add_settings_field('license_key', 'Licenza PRO Wasi Sync', array($this, 'license_key_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('target_platform', 'Destinazione Dati (Target)', array($this, 'target_platform_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
 
         add_settings_field('company_id', 'Company ID', array($this, 'company_id_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('token', 'Token', array($this, 'token_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('email_report', 'Email Report', array($this, 'email_report_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('sync_limit', 'Sync Limit (Properties per run)', array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('sync_frequency', 'Sync Frequency', array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('mapping', 'Category Mapping Rules', array($this, 'mapping_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('sync_limit', 'Sync Limit (Proprietà per run)', array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('sync_frequency', 'Frequenza Cron', array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('mapping', 'Mappatura Categorie', array($this, 'mapping_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
     }
 
     public function sanitize_settings($input)
     {
         $sanitized = array();
 
+        $sanitized['license_key'] = isset($input['license_key']) ? sanitize_text_field($input['license_key']) : '';
+        $sanitized['target_platform'] = isset($input['target_platform']) ? sanitize_text_field($input['target_platform']) : 'directorist';
         $sanitized['company_id'] = sanitize_text_field($input['company_id']);
         $sanitized['token'] = sanitize_text_field($input['token']);
         $sanitized['email_report'] = sanitize_email($input['email_report']);
@@ -77,7 +81,33 @@ class Lytta_Wasi_Admin
     public function display_plugin_setup_page()
     {
         // Include the view file securely
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/settings-page.php';
+        $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'settings';
+
+        if ($active_tab == 'contact') {
+            require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/contact-page.php';
+        }
+        else {
+            require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/settings-page.php';
+        }
+    }
+
+    public function license_key_render()
+    {
+        $options = get_option('lytta_wasi_settings');
+        $val = isset($options['license_key']) ? esc_attr($options['license_key']) : '';
+        echo "<input type='text' name='lytta_wasi_settings[license_key]' value='{$val}' class='regular-text code' placeholder='Inserisci per versione ILLIMITATA'>";
+        echo "<br><small>Versione FREE (0.00€) limitata a max 10 immobili e singola galleria. Inserisci la chiave per sbloccare la <strong>Versione PRO (Premium)</strong>.</small>";
+    }
+
+    public function target_platform_render()
+    {
+        $options = get_option('lytta_wasi_settings');
+        $val = isset($options['target_platform']) ? $options['target_platform'] : 'directorist';
+        echo "<select name='lytta_wasi_settings[target_platform]'>
+            <option value='directorist' " . selected($val, 'directorist', false) . ">Modulo Directorist</option>
+            <option value='acf' " . selected($val, 'acf', false) . ">Modulo Advanced Custom Fields (ACF Standard)</option>
+        </select>";
+        echo "<p class='description'>Scegli dove vuoi salvare su WordPress gli immobili scaricati da Wasi.</p>";
     }
 
     public function company_id_render()

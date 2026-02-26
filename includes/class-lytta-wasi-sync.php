@@ -36,6 +36,8 @@ class Lytta_Wasi_Sync
     private function load_dependencies()
     {
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-lytta-wasi-api.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/adapters/class-lytta-adapter-directorist.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/adapters/class-lytta-adapter-acf.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-lytta-wasi-importer.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-lytta-wasi-admin.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-lytta-github-updater.php';

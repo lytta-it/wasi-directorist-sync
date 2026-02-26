@@ -12,8 +12,24 @@ if (!defined('ABSPATH')) {
     <h2><span class="dashicons dashicons-update"></span> Wasi to Directorist Sync</h2>
     <p><em>Developed by <a href="https://www.lytta.it/" target="_blank">Lytta.it</a></em></p>
 
-    <div style="display:flex; gap: 20px; flex-wrap: wrap;">
-        <div style="flex: 2; min-width: 400px;">
+    <h2 class="nav-tab-wrapper">
+        <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab nav-tab-active">Settings API Base</a>
+        <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab">Contatti, Supporto e Licenza PRO</a>
+    </h2>
+
+    <?php
+$options = get_option('lytta_wasi_settings', []);
+$is_pro = !empty($options['license_key']);
+if (!$is_pro):
+?>
+    <div style="background: #fff8e5; border-left: 4px solid #f56e28; padding: 10px 15px; margin-bottom: 20px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
+        <p style="margin:0;"><strong>Attenzione:</strong> Stai usando la Versione <strong style="color:red;">FREE LIMITATA</strong>. Saranno scaricati un <strong>massimo record di 10 immobili globali</strong> e solo 1 foto di copertina. Per sbloccare lo scaricamento massivo, inserisci la "Licenza PRO" qui sotto oppure <a href="?page=lytta-wasi-sync&tab=contact">clicca qui per acquistarla</a>.</p>
+    </div>
+    <?php
+endif; ?>
+
+    <div style="display:flex; gap: 20px; flex-wrap: wrap; margin-top:20px;">
+        <div style="flex: 2; min-width: 400px; padding: 15px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
             <form action="options.php" method="post">
                 <?php
 settings_fields('lytta_wasi_plugin_page');
