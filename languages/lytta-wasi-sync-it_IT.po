@@ -85,6 +85,15 @@ msgstr "Email Report"
 msgid "Sync Limit (Properties per run)"
 msgstr "Sync Limit (Proprietà per run)"
 
+msgid "Set the number of properties to synchronize during each automatic background run."
+msgstr "Imposta il numero di immobili da sincronizzare durante ogni esecuzione automatica in background."
+
+msgid "Performance Tip:"
+msgstr "Consiglio Prestazioni:"
+
+msgid "Higher limits process more properties per run but consume more server Memory and Time. If your catalog has <strong>over 1000 properties</strong>, do NOT set this value too high (keep it around 30-50) to prevent PHP timeout errors. Instead, temporarily set the Cron Frequency to \"Hourly\" to ingest the entire catalog over a few days securely, then revert it to a slower frequency."
+msgstr "Limiti alti scaricano più immobili ma consumano più RAM e Tempo server. Se il tuo catalogo ha <strong>oltre 1000 immobili</strong>, NON alzare troppo questo valore (tienilo su 30-50) per evitare che il server si blocchi per timeout PHP. Invece, imposta la Frequenza Cron su \"Ogni Ora\" finché non hai scaricato tutto in sicurezza nel giro di qualche giorno, poi rimettila a frequenze più basse."
+
 msgid "Cron Frequency"
 msgstr "Frequenza Cron"
 
@@ -168,8 +177,8 @@ msgid "Please enter your Company ID and Token and save changes to load reference
 msgstr "Inserisci il tuo Company ID e Token, e salva le modifiche per caricare i dati."
 
 # admin/views/contact-page.php
-msgid "Support & Licensing PRO - Wasi Sync by Lytta.it"
-msgstr "Contatti, Supporto e Licenza PRO - Wasi Sync by Lytta.it"
+msgid "Support & Licensing PRO - Wasi Sync by Lytta"
+msgstr "Contatti, Supporto e Licenza PRO - Wasi Sync by Lytta"
 
 msgid "Upgrade to Wasi Sync PRO!"
 msgstr "Upgrade a Wasi Sync PRO!"
@@ -192,8 +201,8 @@ msgstr "Rimozione filtri limite e supporto ad cron intensivi (ogni ora)"
 msgid "Universal ACF (Advanced Custom Fields) integration active"
 msgstr "Integrazione universale ACF (Advanced Custom Fields) attiva"
 
-msgid "Purchase your key (120€/year excl. VAT)"
-msgstr "Acquista la tua chiave (120€/anno IVA escl.)"
+msgid "Purchase your key (120€/year incl. VAT or 10€/month)"
+msgstr "Acquista la tua chiave (120€/anno IVA inclusa o 10€/mese)"
 
 msgid "Email us to generate the invoice and get the Upgrade Token: <strong><a href=\"mailto:info@lytta.it\">info@lytta.it</a></strong>"
 msgstr "Scrivici un email per generare la fattura ed ottenere l'Upgrade Token: <strong><a href=\"mailto:info@lytta.it\">info@lytta.it</a></strong>"
@@ -207,8 +216,8 @@ msgstr "Sviluppo Personalizzato"
 msgid "Wasi-Sync supports market-leading frameworks (Directorist and generic standard ACF fields). But the real estate world is vast."
 msgstr "Wasi-Sync supporta i framework leader del mercato (Directorist e campi standard generici ACF). Ma il mondo immobiliare è vasto."
 
-msgid "Does your site use complex all-in-one themes? Contact the Lytta.it web agency to request the conversion script (Adapter) for your specific theme:"
-msgstr "Il tuo sito sfrutta temi complessi all-in-one? Contatta l'agenzia web Lytta.it per richiedere lo script di conversione (Adapter) per il tuo tema specifico:"
+msgid "Does your site use complex all-in-one themes? Contact Lytta to request the conversion script (Adapter) for your specific theme:"
+msgstr "Il tuo sito sfrutta temi complessi all-in-one? Contatta Lytta per richiedere lo script di conversione (Adapter) per il tuo tema specifico:"
 
 msgid "Houzez Theme"
 msgstr "Tema Houzez"

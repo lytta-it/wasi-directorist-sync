@@ -5,7 +5,7 @@
   
   <p>
     <a href="https://www.lytta.it/" target="_blank">
-        <img src="https://img.shields.io/badge/Developed_by-Lytta.it-00a0d2?style=for-the-badge&logo=wordpress" alt="Lytta Web Agency">
+        <img src="https://img.shields.io/badge/Developed_by-Lytta-00a0d2?style=for-the-badge&logo=wordpress" alt="Lytta">
     </a>
     <img src="https://img.shields.io/badge/Version-12.0.0-success?style=for-the-badge" alt="Version 12.0.0">
     <img src="https://img.shields.io/badge/License-Freemium-ff69b4?style=for-the-badge" alt="Freemium License">
@@ -48,9 +48,9 @@ The plugin operates on a commercial **Freemium** model. Out of the box, it provi
 *   Unlock **UNLIMITED** property synchronization.
 *   Downloads **Full Image Galleries** for every property.
 *   Enables intensive high-frequency Hourly cron jobs.
-*   Priority support from Lytta Web Agency.
+*   Priority support from Lytta.
 
-> 🛒 **Purchase a PRO License (120€/year excl. VAT)**
+> 🛒 **Purchase a PRO License (120€/year incl. VAT or 10€/month)**
 > Email us at [info@lytta.it](mailto:info@lytta.it) to request an invoice and receive your UNLIMITED activation key.
 
 ---
@@ -78,11 +78,11 @@ The plugin operates on a commercial **Freemium** model. Out of the box, it provi
 
 The Real Estate world is complex. If you are building a custom website or using massive premium themes like **Houzez, Goya, or WP Residence**, having raw ACF fields might not be enough. 
 
-Lytta Web Agency offers **Custom Adapter Development**. We can write a specific bridging class for your unique WordPress setup.
+Lytta offers **Custom Adapter Development**. We can write a specific bridging class for your unique WordPress setup.
 Contact us for a tailored quote at [info@lytta.it](mailto:info@lytta.it).
 
 <br>
 
 <div align="center">
-  <p>Developed with ❤️ by <a href="https://www.lytta.it/">Lytta Web Agency</a></p>
+  <p>Developed with ❤️ by <a href="https://www.lytta.it/">Lytta</a></p>
 </div>

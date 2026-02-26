@@ -138,6 +138,8 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['sync_limit']) ? esc_attr($options['sync_limit']) : '10';
         echo "<input type='number' name='lytta_wasi_settings[sync_limit]' value='{$val}' class='small-text'>";
+        echo "<p class='description'>" . wp_kses_post(__('Set the number of properties to synchronize during each automatic background run.', 'lytta-wasi-sync')) . "</p>";
+        echo "<p class='description'><strong>" . esc_html__('Performance Tip:', 'lytta-wasi-sync') . "</strong> " . wp_kses_post(__('Higher limits process more properties per run but consume more server Memory and Time. If your catalog has <strong>over 1000 properties</strong>, do NOT set this value too high (keep it around 30-50) to prevent PHP timeout errors. Instead, temporarily set the Cron Frequency to "Hourly" to ingest the entire catalog over a few days securely, then revert it to a slower frequency.', 'lytta-wasi-sync')) . "</p>";
     }
 
     public function sync_frequency_render()
