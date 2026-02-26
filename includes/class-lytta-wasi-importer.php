@@ -68,7 +68,7 @@ class Lytta_Wasi_Importer
         $data = $this->api->get_properties($limit);
 
         if (is_wp_error($data)) {
-            return "Errore API: " . $data->get_error_message();
+            return sprintf(__('API Error: %s', 'lytta-wasi-sync'), $data->get_error_message());
         }
 
         $stats = ['inserted' => 0, 'updated' => 0, 'errors' => 0, 'drafted' => 0];
@@ -83,12 +83,12 @@ class Lytta_Wasi_Importer
             // --- FREEMIUM HARD STOP COUNT ---
             if (!$is_pro && ($stats['inserted'] + $stats['updated']) >= 10) {
                 // We reached the 10 limit stop for Free Version
-                error_log("Lytta Wasi Sync: Free Version limit of 10 properties reached.");
+                error_log(__('Lytta Wasi Sync: Free Version limit of 10 properties reached.', 'lytta-wasi-sync'));
                 break;
             }
 
             $wasi_id = sanitize_text_field($immobile['id_property']);
-            $title = isset($immobile['title']) ? sanitize_text_field($immobile['title']) : 'Senza Titolo';
+            $title = isset($immobile['title']) ? sanitize_text_field($immobile['title']) : __('Untitled Property', 'lytta-wasi-sync');
 
             $desc_raw = isset($immobile['observations']) ? $immobile['observations'] : '';
             $desc_html = wp_kses_post(html_entity_decode($desc_raw)); // Sanitized HTML
@@ -162,8 +162,14 @@ class Lytta_Wasi_Importer
             $this->send_report_email($stats, $is_pro);
         }
 
-        $license_msg = $is_pro ? 'PRO Active' : 'FREE Version LIMIT: 10';
-        return "Sync V12.0 OK [{$license_msg}]: Nuovi {$stats['inserted']}, Agg. {$stats['updated']}, Rimossi {$stats['drafted']}.";
+        $license_msg = $is_pro ? __('PRO Active', 'lytta-wasi-sync') : __('FREE Version LIMIT: 10', 'lytta-wasi-sync');
+        return sprintf(
+            __('Sync V12.0 OK [%1$s]: Inserted %2$d, Updated %3$d, Removed %4$d.', 'lytta-wasi-sync'),
+            $license_msg,
+            $stats['inserted'],
+            $stats['updated'],
+            $stats['drafted']
+        );
     }
 
     private function run_cleanup($target_post_type)
@@ -193,19 +199,19 @@ class Lytta_Wasi_Importer
 
     private function send_report_email($stats, $is_pro)
     {
-        $subject = "Report Sync Lytta - " . date("d/m/Y H:i");
-        $message = "Report Sync Lytta - " . date("d/m/Y H:i") . "\n\n";
+        $subject = sprintf(__('Lytta Sync Report - %s', 'lytta-wasi-sync'), date("Y-m-d H:i"));
+        $message = $subject . "\n\n";
 
         if (!$is_pro) {
-            $message .= "ATTENZIONE: Stai utilizzando la versione FREE del modulo.\n";
-            $message .= "Il limite massimo di esportazione è bloccato a 10 immobili.\n";
-            $message .= "Acquista una licenza PRO per sincronizzare l'intero catalogo.\n\n";
+            $message .= __('WARNING: You are using the FREE version of the module.', 'lytta-wasi-sync') . "\n";
+            $message .= __('The maximum export limit is locked to 10 properties.', 'lytta-wasi-sync') . "\n";
+            $message .= __('Purchase a PRO license to sync your entire catalog.', 'lytta-wasi-sync') . "\n\n";
         }
 
-        $message .= "Nuovi Immobili: " . $stats['inserted'] . "\n";
-        $message .= "Aggiornati: " . $stats['updated'] . "\n";
-        $message .= "Rimossi/Bozze: " . $stats['drafted'] . "\n";
-        $message .= "Errori: " . $stats['errors'] . "\n";
+        $message .= sprintf(__('New Properties inserted: %d', 'lytta-wasi-sync'), $stats['inserted']) . "\n";
+        $message .= sprintf(__('Properties updated: %d', 'lytta-wasi-sync'), $stats['updated']) . "\n";
+        $message .= sprintf(__('Properties removed/drafted: %d', 'lytta-wasi-sync'), $stats['drafted']) . "\n";
+        $message .= sprintf(__('Errors encountered: %d', 'lytta-wasi-sync'), $stats['errors']) . "\n";
 
         $headers = array('Content-Type: text/plain; charset=UTF-8');
         wp_mail($this->config['email_report'], $subject, $message, $headers);

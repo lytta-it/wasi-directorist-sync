@@ -9,48 +9,48 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h2><span class="dashicons dashicons-money-alt"></span> Support & Licensing PRO - Wasi Sync by Lytta.it</h2>
+    <h2><span class="dashicons dashicons-money-alt"></span> <?php esc_html_e('Support & Licensing PRO - Wasi Sync by Lytta.it', 'lytta-wasi-sync'); ?></h2>
     
     <h2 class="nav-tab-wrapper">
-        <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab">Settings API Base</a>
-        <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab nav-tab-active">Contatti, Supporto e Licenza PRO</a>
+        <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab"><?php esc_html_e('Base API Settings', 'lytta-wasi-sync'); ?></a>
+        <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab nav-tab-active"><?php esc_html_e('Contact, Support & PRO License', 'lytta-wasi-sync'); ?></a>
     </h2>
 
     <div style="display:flex; gap: 20px; flex-wrap: wrap; margin-top:20px;">
         <div style="flex: 1; min-width: 400px; background: #fff; padding: 20px; border: 1px solid #ccd0d4; border-radius: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
-            <h3>🚀 Upgrade a Wasi Sync PRO!</h3>
-            <p>La versione gratuita è ottima per testare l'infrastruttura, ma è <strong>limitata all'importazione di soli 10 immobili globali*</strong> e scarica solo l'immagine di anteprima (impedendo di divorare la memoria del server senza garanzia).</p>
+            <h3>🚀 <?php esc_html_e('Upgrade to Wasi Sync PRO!', 'lytta-wasi-sync'); ?></h3>
+            <p><?php echo wp_kses_post(__('The free version is great for testing the infrastructure, but it is <strong>limited to importing only 10 global properties*</strong> and downloads only the preview image (preventing server memory exhaustion without guarantees).', 'lytta-wasi-sync')); ?></p>
             
-            <p><strong>Cosa sblocca la versione Premium/PRO:</strong></p>
+            <p><strong><?php esc_html_e('What the Premium/PRO version unlocks:', 'lytta-wasi-sync'); ?></strong></p>
             <ul style="list-style-type: square; margin-left:20px;">
-                <li>Sincronizzazione di un <strong>numero ILLIMITATO</strong> di immobili</li>
-                <li>Importazione completa delle <strong>Gallerie Immagini</strong></li>
-                <li>Rimozione filtri limite e supporto ad cron intensivi (ogni ora)</li>
-                <li>Integrazione universale ACF (Advanced Custom Fields) attiva</li>
+                <li><?php echo wp_kses_post(__('Synchronization of an <strong>UNLIMITED number</strong> of properties', 'lytta-wasi-sync')); ?></li>
+                <li><?php echo wp_kses_post(__('Full import of <strong>Image Galleries</strong>', 'lytta-wasi-sync')); ?></li>
+                <li><?php esc_html_e('Removal of limit filters and support for intensive crons (hourly)', 'lytta-wasi-sync'); ?></li>
+                <li><?php esc_html_e('Universal ACF (Advanced Custom Fields) integration active', 'lytta-wasi-sync'); ?></li>
             </ul>
 
             <div style="background: #e5f5fa; border-left: 4px solid #00a0d2; padding: 15px; margin: 20px 0;">
-                <h4>Acquista la tua chiave (120€/anno IVA escl.)</h4>
-                <p>Scrivici un email per generare la fattura ed ottenere l'Upgrade Token: <strong><a href="mailto:info@lytta.it">info@lytta.it</a></strong></p>
+                <h4><?php esc_html_e('Purchase your key (120€/year excl. VAT)', 'lytta-wasi-sync'); ?></h4>
+                <p><?php echo wp_kses_post(__('Email us to generate the invoice and get the Upgrade Token: <strong><a href="mailto:info@lytta.it">info@lytta.it</a></strong>', 'lytta-wasi-sync')); ?></p>
             </div>
             
-            <p><small>*L'auto-updater da GitHub continuerà a correggere i bug di sicurezza gratuitamente anche per la versione Free.</small></p>
+            <p><small><?php esc_html_e('*The GitHub Auto-Updater will continue to fix security bugs for free, even for the Free version.', 'lytta-wasi-sync'); ?></small></p>
         </div>
 
         <div style="flex: 1; min-width: 400px; background: #fff; padding: 20px; border: 1px solid #ccd0d4; border-radius: 4px;">
-            <h3>🛠 Sviluppo Personalizzato</h3>
-            <p>Wasi-Sync supporta i framework leader del mercato (Directorist e campi standard generici ACF). Ma il mondo immobiliare è vasto.</p>
-            <p>Il tuo sito sfrutta temi complessi all-in-one? Contatta l'agenzia web Lytta.it per richiedere lo script di conversione (Adapter) per il tuo tema specifico:</p>
+            <h3>🛠 <?php esc_html_e('Custom Development', 'lytta-wasi-sync'); ?></h3>
+            <p><?php esc_html_e('Wasi-Sync supports market-leading frameworks (Directorist and generic standard ACF fields). But the real estate world is vast.', 'lytta-wasi-sync'); ?></p>
+            <p><?php esc_html_e('Does your site use complex all-in-one themes? Contact the Lytta.it web agency to request the conversion script (Adapter) for your specific theme:', 'lytta-wasi-sync'); ?></p>
             <ul style="list-style-type: disc; margin-left: 20px;">
-                <li>Tema Houzez</li>
-                <li>Tema WP Residence</li>
-                <li>Goya Real Estate</li>
-                <li>Listify</li>
+                <li><?php esc_html_e('Houzez Theme', 'lytta-wasi-sync'); ?></li>
+                <li><?php esc_html_e('WP Residence Theme', 'lytta-wasi-sync'); ?></li>
+                <li><?php esc_html_e('Goya Real Estate', 'lytta-wasi-sync'); ?></li>
+                <li><?php esc_html_e('Listify', 'lytta-wasi-sync'); ?></li>
             </ul>
 
             <p style="margin-top:20px">
                 <a href="mailto:info@lytta.it?subject=Richiesta Adattatore Wasi Personalizzato" class="button button-primary button-large">
-                    Richiedi Preventivo (info@lytta.it)
+                    <?php esc_html_e('Request a Quote (info@lytta.it)', 'lytta-wasi-sync'); ?>
                 </a>
             </p>
         </div>

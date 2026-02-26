@@ -28,9 +28,24 @@ class Lytta_Wasi_Sync
         $this->plugin_name = 'lytta-wasi-sync';
 
         $this->load_dependencies();
+        $this->set_locale();
         $this->define_admin_hooks();
         $this->define_cron_hooks();
         $this->init_github_updater();
+    }
+
+    private function set_locale()
+    {
+        add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
+    }
+
+    public function load_plugin_textdomain()
+    {
+        load_plugin_textdomain(
+            'lytta-wasi-sync',
+            false,
+            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+        );
     }
 
     private function load_dependencies()

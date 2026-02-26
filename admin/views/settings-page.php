@@ -13,8 +13,8 @@ if (!defined('ABSPATH')) {
     <p><em>Developed and maintained by <a href="https://www.lytta.it/" target="_blank"><strong>Lytta Web Agency</strong></a></em></p>
 
     <h2 class="nav-tab-wrapper">
-        <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab nav-tab-active">Settings API Base</a>
-        <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab">Contatti, Supporto e Licenza PRO</a>
+        <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab nav-tab-active"><?php esc_html_e('Base API Settings', 'lytta-wasi-sync'); ?></a>
+        <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab"><?php esc_html_e('Contact, Support & PRO License', 'lytta-wasi-sync'); ?></a>
     </h2>
 
     <?php
@@ -23,7 +23,7 @@ $is_pro = !empty($options['license_key']);
 if (!$is_pro):
 ?>
     <div style="background: #fff8e5; border-left: 4px solid #f56e28; padding: 10px 15px; margin-bottom: 20px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
-        <p style="margin:0;"><strong>Attenzione:</strong> Stai usando la Versione <strong style="color:red;">FREE LIMITATA</strong>. Saranno scaricati un <strong>massimo record di 10 immobili globali</strong> e solo 1 foto di copertina. Per sbloccare lo scaricamento massivo, inserisci la "Licenza PRO" qui sotto oppure <a href="?page=lytta-wasi-sync&tab=contact">clicca qui per acquistarla</a>.</p>
+        <p style="margin:0;"><strong><?php esc_html_e('Warning:', 'lytta-wasi-sync'); ?></strong> <?php echo wp_kses_post(__('You are using the <strong style="color:red;">LIMITED FREE Version</strong>. A <strong>maximum of 10 properties</strong> will be downloaded with only 1 cover image. To unlock mass downloading, enter the "PRO License" below or <a href="?page=lytta-wasi-sync&tab=contact">click here to purchase one</a>.', 'lytta-wasi-sync')); ?></p>
     </div>
     <?php
 endif; ?>
@@ -44,10 +44,10 @@ $api = new Lytta_Wasi_API();
 if ($api->is_configured()):
 ?>
         <div style="flex: 1; min-width: 300px; background: #fff; border: 1px solid #ccd0d4; padding: 15px; border-radius: 4px;">
-            <h3>Data Reference</h3>
-            <p>Use these IDs to build your category mapping rules.</p>
+            <h3><?php esc_html_e('Data Reference', 'lytta-wasi-sync'); ?></h3>
+            <p><?php esc_html_e('Use these IDs to build your category mapping rules.', 'lytta-wasi-sync'); ?></p>
             
-            <h4>WASI Property Types</h4>
+            <h4><?php esc_html_e('WASI Property Types', 'lytta-wasi-sync'); ?></h4>
             <div style="max-height: 250px; overflow-y: auto; background: #f9f9f9; padding: 10px; border: 1px solid #ddd;">
                 <?php
     $types = $api->get_property_types();
@@ -63,12 +63,12 @@ if ($api->is_configured()):
         echo '</ul>';
     }
     else {
-        echo '<p>Could not load Wasi Types. Check credentials.</p>';
+        echo '<p>' . esc_html__('Could not load Wasi Types. Check credentials.', 'lytta-wasi-sync') . '</p>';
     }
 ?>
             </div>
 
-            <h4 style="margin-top:20px;">Directorist Categories (Target)</h4>
+            <h4 style="margin-top:20px;"><?php esc_html_e('Directorist Categories (Target)', 'lytta-wasi-sync'); ?></h4>
             <div style="max-height: 250px; overflow-y: auto; background: #f9f9f9; padding: 10px; border: 1px solid #ddd;">
                 <?php
     $terms = get_terms([
@@ -83,7 +83,7 @@ if ($api->is_configured()):
         echo '</ul>';
     }
     else {
-        echo '<p>No Directorist categories found.</p>';
+        echo '<p>' . esc_html__('No Directorist categories found.', 'lytta-wasi-sync') . '</p>';
     }
 ?>
             </div>
@@ -91,7 +91,7 @@ if ($api->is_configured()):
         <?php
 else: ?>
             <div style="flex: 1; min-width: 300px; padding: 15px; background: #fff8e5; border-left: 4px solid #f56e28;">
-                <p><strong>Setup Required:</strong> Please enter your Company ID and Token and save changes to load reference data.</p>
+                <p><strong><?php esc_html_e('Setup Required:', 'lytta-wasi-sync'); ?></strong> <?php esc_html_e('Please enter your Company ID and Token and save changes to load reference data.', 'lytta-wasi-sync'); ?></p>
             </div>
         <?php
 endif; ?>

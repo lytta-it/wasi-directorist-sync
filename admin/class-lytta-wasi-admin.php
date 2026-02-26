@@ -25,22 +25,22 @@ class Lytta_Wasi_Admin
 
         add_settings_section(
             'lytta_wasi_plugin_page_section',
-            'Configurazione Wasi',
+            __('Wasi Configuration', 'lytta-wasi-sync'),
             function () {
-            echo '<p class="description">Inserisci le tue credenziali Wasi per abilitare la sincronizzazione.</p>';
+            echo '<p class="description">' . esc_html__('Enter your Wasi credentials to enable synchronization.', 'lytta-wasi-sync') . '</p>';
         },
             'lytta_wasi_plugin_page'
         );
 
-        add_settings_field('license_key', 'Licenza PRO Wasi Sync', array($this, 'license_key_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('target_platform', 'Destinazione Dati (Target)', array($this, 'target_platform_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('license_key', __('Wasi Sync PRO License', 'lytta-wasi-sync'), array($this, 'license_key_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('target_platform', __('Data Destination (Target)', 'lytta-wasi-sync'), array($this, 'target_platform_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
 
-        add_settings_field('company_id', 'Company ID', array($this, 'company_id_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('token', 'Token', array($this, 'token_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('email_report', 'Email Report', array($this, 'email_report_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('sync_limit', 'Sync Limit (Proprietà per run)', array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('sync_frequency', 'Frequenza Cron', array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('mapping', 'Mappatura Categorie', array($this, 'mapping_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('company_id', __('Company ID', 'lytta-wasi-sync'), array($this, 'company_id_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('token', __('Token', 'lytta-wasi-sync'), array($this, 'token_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('email_report', __('Email Report', 'lytta-wasi-sync'), array($this, 'email_report_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('sync_limit', __('Sync Limit (Properties per run)', 'lytta-wasi-sync'), array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('sync_frequency', __('Cron Frequency', 'lytta-wasi-sync'), array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('mapping', __('Category Mapping', 'lytta-wasi-sync'), array($this, 'mapping_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
     }
 
     public function sanitize_settings($input)
@@ -96,8 +96,8 @@ class Lytta_Wasi_Admin
     {
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['license_key']) ? esc_attr($options['license_key']) : '';
-        echo "<input type='text' name='lytta_wasi_settings[license_key]' value='{$val}' class='regular-text code' placeholder='Inserisci per versione ILLIMITATA'>";
-        echo "<br><small>Versione FREE (0.00€) limitata a max 10 immobili e singola galleria. Inserisci la chiave per sbloccare la <strong>Versione PRO (Premium)</strong>.</small>";
+        echo "<input type='text' name='lytta_wasi_settings[license_key]' value='{$val}' class='regular-text code' placeholder='" . esc_attr__('Enter key for UNLIMITED version', 'lytta-wasi-sync') . "'>";
+        echo "<br><small>" . wp_kses_post(__('FREE Version (0.00€) is limited to 10 properties and a single image. Enter the key to unlock the <strong>PRO Version (Premium)</strong>.', 'lytta-wasi-sync')) . "</small>";
     }
 
     public function target_platform_render()
@@ -105,10 +105,10 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['target_platform']) ? $options['target_platform'] : 'directorist';
         echo "<select name='lytta_wasi_settings[target_platform]'>
-            <option value='directorist' " . selected($val, 'directorist', false) . ">Modulo Directorist</option>
-            <option value='acf' " . selected($val, 'acf', false) . ">Modulo Advanced Custom Fields (ACF Standard)</option>
+            <option value='directorist' " . selected($val, 'directorist', false) . ">" . esc_html__('Directorist Module', 'lytta-wasi-sync') . "</option>
+            <option value='acf' " . selected($val, 'acf', false) . ">" . esc_html__('Advanced Custom Fields (ACF Standard) Module', 'lytta-wasi-sync') . "</option>
         </select>";
-        echo "<p class='description'>Scegli dove vuoi salvare su WordPress gli immobili scaricati da Wasi.</p>";
+        echo "<p class='description'>" . esc_html__('Choose where to save the properties downloaded from Wasi into WordPress.', 'lytta-wasi-sync') . "</p>";
     }
 
     public function company_id_render()
@@ -130,7 +130,7 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['email_report']) ? esc_attr($options['email_report']) : get_option('admin_email');
         echo "<input type='email' name='lytta_wasi_settings[email_report]' value='{$val}' class='regular-text'>";
-        echo "<p class='description'>Lascia vuoto per disabilitare le notifiche email. Di default usa l'email principale del sito.</p>";
+        echo "<p class='description'>" . esc_html__('Leave empty to disable email notifications. Defaults to the main site admin email.', 'lytta-wasi-sync') . "</p>";
     }
 
     public function sync_limit_render()
@@ -145,12 +145,12 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['sync_frequency']) ? $options['sync_frequency'] : 'twicedaily';
         echo "<select name='lytta_wasi_settings[sync_frequency]'>
-            <option value='hourly' " . selected($val, 'hourly', false) . ">Ogni Ora</option>
-            <option value='every_two_hours' " . selected($val, 'every_two_hours', false) . ">Ogni 2 Ore</option>
-            <option value='every_six_hours' " . selected($val, 'every_six_hours', false) . ">Ogni 6 Ore</option>
-            <option value='twicedaily' " . selected($val, 'twicedaily', false) . ">Due volte al giorno</option>
-            <option value='daily' " . selected($val, 'daily', false) . ">Una volta al giorno</option>
-            <option value='weekly' " . selected($val, 'weekly', false) . ">Una volta a settimana</option>
+            <option value='hourly' " . selected($val, 'hourly', false) . ">" . esc_html__('Hourly', 'lytta-wasi-sync') . "</option>
+            <option value='every_two_hours' " . selected($val, 'every_two_hours', false) . ">" . esc_html__('Every 2 Hours', 'lytta-wasi-sync') . "</option>
+            <option value='every_six_hours' " . selected($val, 'every_six_hours', false) . ">" . esc_html__('Every 6 Hours', 'lytta-wasi-sync') . "</option>
+            <option value='twicedaily' " . selected($val, 'twicedaily', false) . ">" . esc_html__('Twice a day', 'lytta-wasi-sync') . "</option>
+            <option value='daily' " . selected($val, 'daily', false) . ">" . esc_html__('Once a day', 'lytta-wasi-sync') . "</option>
+            <option value='weekly' " . selected($val, 'weekly', false) . ">" . esc_html__('Once a week', 'lytta-wasi-sync') . "</option>
         </select>";
     }
 
@@ -159,7 +159,7 @@ class Lytta_Wasi_Admin
         $options = get_option('lytta_wasi_settings');
         $val = isset($options['mapping']) ? esc_textarea($options['mapping']) : '';
         echo "<textarea name='lytta_wasi_settings[mapping]' rows='5' cols='50' class='large-text code'>{$val}</textarea>";
-        echo "<p class='description'>Format: <code>WASI_ID=Category Name</code>. Multiple IDs can be comma separated. One rule per line.<br>E.g. <code>2,14=Apartamento</code>.</p>";
+        echo "<p class='description'>" . wp_kses_post(__('Format: <code>WASI_ID=Category Name</code>. Multiple IDs can be comma separated. One rule per line.<br>E.g. <code>2,14=Apartamento</code>.', 'lytta-wasi-sync')) . "</p>";
     }
 
 }

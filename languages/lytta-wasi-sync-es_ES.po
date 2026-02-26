@@ -1,0 +1,227 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wasi Sync PRO by Lytta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:00+0100\n"
+"PO-Revision-Date: 2026-02-26 12:00+0100\n"
+"Last-Translator: Lytta.it\n"
+"Language-Team: Lytta\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: lytta-wasi-sync\n"
+
+# wasi-sync.php
+msgid "Il connettore API definitivo per agenzie immobiliari. Sincronizza Wasi con WordPress usando Directorist o Advanced Custom Fields (ACF)."
+msgstr "El conector API definitivo para agencias inmobiliarias. Sincroniza Wasi con WordPress usando Directorist o Advanced Custom Fields (ACF)."
+
+# includes/class-lytta-wasi-importer.php
+msgid "API Error: %s"
+msgstr "Error de API: %s"
+
+msgid "Lytta Wasi Sync: Free Version limit of 10 properties reached."
+msgstr "Lytta Wasi Sync: Límite de la versión gratuita de 10 propiedades alcanzado."
+
+msgid "Untitled Property"
+msgstr "Propiedad sin título"
+
+msgid "PRO Active"
+msgstr "PRO Activo"
+
+msgid "FREE Version LIMIT: 10"
+msgstr "LÍMITE Versión GRATIS: 10"
+
+msgid "Sync V12.0 OK [%1$s]: Inserted %2$d, Updated %3$d, Removed %4$d."
+msgstr "Sinc V12.0 OK [%1$s]: Nuevos %2$d, Act. %3$d, Borrados %4$d."
+
+msgid "Lytta Sync Report - %s"
+msgstr "Reporte Sync Lytta - %s"
+
+msgid "WARNING: You are using the FREE version of the module."
+msgstr "ATENCIÓN: Estás usando la versión GRATIS del módulo."
+
+msgid "The maximum export limit is locked to 10 properties."
+msgstr "El límite máximo de exportación está bloqueado a 10 propiedades."
+
+msgid "Purchase a PRO license to sync your entire catalog."
+msgstr "Adquiere una licencia PRO para sincronizar todo tu catálogo."
+
+msgid "New Properties inserted: %d"
+msgstr "Nuevos Inmuebles insertados: %d"
+
+msgid "Properties updated: %d"
+msgstr "Inmuebles actualizados: %d"
+
+msgid "Properties removed/drafted: %d"
+msgstr "Inmuebles eliminados/borradores: %d"
+
+msgid "Errors encountered: %d"
+msgstr "Errores encontrados: %d"
+
+
+# admin/class-lytta-wasi-admin.php
+msgid "Wasi Configuration"
+msgstr "Configuración de Wasi"
+
+msgid "Enter your Wasi credentials to enable synchronization."
+msgstr "Ingresa tus credenciales de Wasi para habilitar la sincronización."
+
+msgid "Wasi Sync PRO License"
+msgstr "Licencia PRO Wasi Sync"
+
+msgid "Data Destination (Target)"
+msgstr "Destino de Datos (Target)"
+
+msgid "Company ID"
+msgstr "Company ID"
+
+msgid "Token"
+msgstr "Token"
+
+msgid "Email Report"
+msgstr "Email de Reporte"
+
+msgid "Sync Limit (Properties per run)"
+msgstr "Límite de Sincronización (Propiedades / ejecución)"
+
+msgid "Cron Frequency"
+msgstr "Frecuencia Cron"
+
+msgid "Category Mapping"
+msgstr "Mapeo de Categorías"
+
+msgid "Enter key for UNLIMITED version"
+msgstr "Introduce la clave para versión ILIMITADA"
+
+msgid "FREE Version (0.00€) is limited to 10 properties and a single image. Enter the key to unlock the <strong>PRO Version (Premium)</strong>."
+msgstr "La Versión GRATIS (0.00€) está limitada a máx. 10 propiedades y una sola imagen. Ingresa la llave para desbloquear la <strong>Versión PRO (Premium)</strong>."
+
+msgid "Directorist Module"
+msgstr "Módulo Directorist"
+
+msgid "Advanced Custom Fields (ACF Standard) Module"
+msgstr "Módulo Advanced Custom Fields (ACF Estándar)"
+
+msgid "Choose where to save the properties downloaded from Wasi into WordPress."
+msgstr "Elige dónde guardar en WordPress las propiedades descargadas desde Wasi."
+
+msgid "Leave empty to disable email notifications. Defaults to the main site admin email."
+msgstr "Deja en blanco para desactivar las notificaciones por correo electrónico. Por defecto usa el correo electrónico principal del administrador del sitio."
+
+msgid "Hourly"
+msgstr "Cada Hora"
+
+msgid "Every 2 Hours"
+msgstr "Cada 2 Horas"
+
+msgid "Every 6 Hours"
+msgstr "Cada 6 Horas"
+
+msgid "Twice a day"
+msgstr "Dos veces al día"
+
+msgid "Once a day"
+msgstr "Una vez al día"
+
+msgid "Once a week"
+msgstr "Una vez a la semana"
+
+
+msgid "Format: <code>WASI_ID=Category Name</code>. Multiple IDs can be comma separated. One rule per line.<br>E.g. <code>2,14=Apartamento</code>."
+msgstr "Formato: <code>WASI_ID=Nombre de la Categoría</code>. Múltiples ID pueden ir separados por una coma. Una regla por línea.<br>Ej. <code>2,14=Apartamento</code>."
+
+# admin/views/settings-page.php
+msgid "Base API Settings"
+msgstr "Configuración API Base"
+
+msgid "Contact, Support & PRO License"
+msgstr "Contacto, Soporte y Licencia PRO"
+
+msgid "Warning:"
+msgstr "Atención:"
+
+msgid "You are using the <strong style=\"color:red;\">LIMITED FREE Version</strong>. A <strong>maximum of 10 properties</strong> will be downloaded with only 1 cover image. To unlock mass downloading, enter the \"PRO License\" below or <a href=\"?page=lytta-wasi-sync&tab=contact\">click here to purchase one</a>."
+msgstr "Estás usando la Versión <strong style=\"color:red;\">GRATIS LIMITADA</strong>. Se descargará un <strong>número máximo de 10 inmuebles </strong> y solo 1 foto de portada. Para desbloquear la descarga masiva, ingresa la \"Licencia PRO\" a continuación o <a href=\"?page=lytta-wasi-sync&tab=contact\">haz clic aquí para adquirir una</a>."
+
+msgid "Data Reference"
+msgstr "Referencia de Datos (IDs)"
+
+msgid "Use these IDs to build your category mapping rules."
+msgstr "Usa estos ID para crear las reglas de mapeo de las categorías."
+
+msgid "WASI Property Types"
+msgstr "Tipos de Inmuebles WASI"
+
+msgid "Could not load Wasi Types. Check credentials."
+msgstr "No se pudieron cargar los tipos desde Wasi. Verifica las credenciales."
+
+msgid "Directorist Categories (Target)"
+msgstr "Categorías en Directorist (Destino)"
+
+msgid "No Directorist categories found."
+msgstr "No se han encontrado categorías de Directorist en el sitio."
+
+msgid "Setup Required:"
+msgstr "Configuración Necesaria:"
+
+msgid "Please enter your Company ID and Token and save changes to load reference data."
+msgstr "Por favor introduce tu Company ID y Token, y guarda los cambios para cargar los datos."
+
+# admin/views/contact-page.php
+msgid "Support & Licensing PRO - Wasi Sync by Lytta.it"
+msgstr "Soporte y Licencia PRO - Wasi Sync por Lytta.it"
+
+msgid "Upgrade to Wasi Sync PRO!"
+msgstr "¡Actualízate a Wasi Sync PRO!"
+
+msgid "The free version is great for testing the infrastructure, but it is <strong>limited to importing only 10 global properties*</strong> and downloads only the preview image (preventing server memory exhaustion without guarantees)."
+msgstr "La versión gratuita es genial para probar la infraestructura, pero está <strong>limitada a importar solo 10 inmuebles en total*</strong> y descarga únicamente la imagen de vista previa (evitando que colapse la memoria del servidor de gratis)."
+
+msgid "What the Premium/PRO version unlocks:"
+msgstr "Lo que desbloquea la versión Premium/PRO:"
+
+msgid "Synchronization of an <strong>UNLIMITED number</strong> of properties"
+msgstr "Sincronización de un <strong>número ILIMITADO</strong> de todas las propiedades"
+
+msgid "Full import of <strong>Image Galleries</strong>"
+msgstr "Importación completa de <strong>Galerías de Imágenes</strong>"
+
+msgid "Removal of limit filters and support for intensive crons (hourly)"
+msgstr "Se quitan los filtros de límite y permite activaciones masivas frecuentes (cada hora)"
+
+msgid "Universal ACF (Advanced Custom Fields) integration active"
+msgstr "Integración universal activa con ACF (Advanced Custom Fields)"
+
+msgid "Purchase your key (120€/year excl. VAT)"
+msgstr "Cómpranos tu llave o Token de Actualización PRO (120€/año IVA no incluido)"
+
+msgid "Email us to generate the invoice and get the Upgrade Token: <strong><a href=\"mailto:info@lytta.it\">info@lytta.it</a></strong>"
+msgstr "Escríbenos un e-mail para generarte la factura y entregarte el código Token PRO: <strong><a href=\"mailto:info@lytta.it\">info@lytta.it</a></strong>"
+
+msgid "*The GitHub Auto-Updater will continue to fix security bugs for free, even for the Free version."
+msgstr "*El Autoupdater a través de Github seguirá arreglando bugs de seguridad aunque uses la Versión Gratis."
+
+msgid "Custom Development"
+msgstr "Desarrollo A Medida"
+
+msgid "Wasi-Sync supports market-leading frameworks (Directorist and generic standard ACF fields). But the real estate world is vast."
+msgstr "Wasi-Sync es compatible con las herranmientas base del mercado (Directorist o el formato estandar ACF). Pero el mundo inmobiliario es complejo."
+
+msgid "Does your site use complex all-in-one themes? Contact the Lytta.it web agency to request the conversion script (Adapter) for your specific theme:"
+msgstr "¿Tu portal web utiliza temas avanzados \"Todo en Uno\"? Contacta con la agencia web Lytta.it para que desarrollemos tu script adaptador personalizado:"
+
+msgid "Houzez Theme"
+msgstr "Tema Houzez"
+
+msgid "WP Residence Theme"
+msgstr "Tema WP Residence"
+
+msgid "Goya Real Estate"
+msgstr "Goya Real Estate"
+
+msgid "Listify"
+msgstr "Tema Listify"
+
+msgid "Request a Quote (info@lytta.it)"
+msgstr "Solicitar presupuesto personalizado (info@lytta.it)"
