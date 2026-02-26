@@ -27,7 +27,8 @@ class Lytta_Wasi_Admin
             'lytta_wasi_plugin_page_section',
             'Configurazione Wasi',
             function () {
-            echo '<p class="description">Inserisci le tue credenziali Wasi per abilitare la sincronizzazione.</p>'; },
+            echo '<p class="description">Inserisci le tue credenziali Wasi per abilitare la sincronizzazione.</p>';
+        },
             'lytta_wasi_plugin_page'
         );
 
@@ -68,7 +69,7 @@ class Lytta_Wasi_Admin
     public function add_plugin_admin_menu()
     {
         add_menu_page(
-            'Wasi to Directorist Sync by Lytta',
+            'Wasi Sync PRO by Lytta',
             'Wasi Sync',
             'manage_options',
             $this->plugin_name,

@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       Wasi to Directorist Sync
+ * Plugin Name:       Wasi Sync PRO by Lytta
  * Plugin URI:        https://www.lytta.it
- * Description:       Sync properties from Wasi to Directorist effortlessly. Pro level API integration and intelligent data mapping.
+ * Description:       Il connettore API definitivo per agenzie immobiliari. Sincronizza Wasi con WordPress usando Directorist o Advanced Custom Fields (ACF).
  * Version:           12.0.0
- * Author:            Lytta.it
+ * Author:            Lytta Web Agency
  * Author URI:        https://www.lytta.it
  * Text Domain:       lytta-wasi-sync
  * Domain Path:       /languages

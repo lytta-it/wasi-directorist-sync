@@ -9,8 +9,8 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h2><span class="dashicons dashicons-update"></span> Wasi to Directorist Sync</h2>
-    <p><em>Developed by <a href="https://www.lytta.it/" target="_blank">Lytta.it</a></em></p>
+    <h2><span class="dashicons dashicons-update"></span> Wasi Sync PRO</h2>
+    <p><em>Developed and maintained by <a href="https://www.lytta.it/" target="_blank"><strong>Lytta Web Agency</strong></a></em></p>
 
     <h2 class="nav-tab-wrapper">
         <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab nav-tab-active">Settings API Base</a>
