@@ -3,7 +3,7 @@
  * Plugin Name:       Wasi Sync PRO by Lytta
  * Plugin URI:        https://www.lytta.it
  * Description:       Il connettore API definitivo per agenzie immobiliari. Sincronizza Wasi con WordPress usando Directorist o Advanced Custom Fields (ACF).
- * Version:           12.0.0
+ * Version:           15.0.0
  * Author:            Lytta Web Agency
  * Author URI:        https://www.lytta.it/
  * License: GPLv2 or later
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('LYTTA_WASI_VERSION', '13.0.0');
+define('LYTTA_WASI_VERSION', '15.0.0');
 define('LYTTA_WASI_DIR', plugin_dir_path(__FILE__));
 define('LYTTA_WASI_SECRET', 'Lyt74_W4si_Pr0_2026!#');
 
