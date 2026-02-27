@@ -9,17 +9,36 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h2><span class="dashicons dashicons-update"></span> Wasi Sync PRO</h2>
-    <p><em>Developed and maintained by <a href="https://www.lytta.it/" target="_blank"><strong>Lytta Web Agency</strong></a></em></p>
+    <h2>
+        <span class="dashicons dashicons-update"></span> Wasi Sync PRO 
+        <?php
+$api_check = new Lytta_Wasi_API();
+if ($api_check->is_configured()) {
+    // Quick ping using get_property_types which is fast
+    $check = $api_check->get_property_types();
+    if (!is_wp_error($check)) {
+        echo '<span style="font-size:12px; vertical-align:middle; background:#46b450; color:white; padding:3px 8px; border-radius:4px; margin-left:10px;">' . esc_html__('Connected', 'lytta-wasi-sync') . '</span>';
+    }
+    else {
+        echo '<span style="font-size:12px; vertical-align:middle; background:#dc3232; color:white; padding:3px 8px; border-radius:4px; margin-left:10px;">' . esc_html__('API Failed', 'lytta-wasi-sync') . '</span>';
+    }
+}
+else {
+    echo '<span style="font-size:12px; vertical-align:middle; background:#999; color:white; padding:3px 8px; border-radius:4px; margin-left:10px;">' . esc_html__('Not Configured', 'lytta-wasi-sync') . '</span>';
+}
+?>
+    </h2>
+    <p><em>Developed and maintained by <a href="https://www.lytta.it/" target="_blank"><strong>Lytta</strong></a></em></p>
 
     <h2 class="nav-tab-wrapper">
         <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab nav-tab-active"><?php esc_html_e('Base API Settings', 'lytta-wasi-sync'); ?></a>
+        <a href="?page=lytta-wasi-sync&tab=mapping" class="nav-tab"><?php esc_html_e('Category Mapping', 'lytta-wasi-sync'); ?></a>
         <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab"><?php esc_html_e('Contact, Support & PRO License', 'lytta-wasi-sync'); ?></a>
     </h2>
 
     <?php
 $options = get_option('lytta_wasi_settings', []);
-$is_pro = !empty($options['license_key']);
+$is_pro = lytta_wasi_is_pro();
 if (!$is_pro):
 ?>
     <div style="background: #fff8e5; border-left: 4px solid #f56e28; padding: 10px 15px; margin-bottom: 20px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">

@@ -42,8 +42,7 @@ class Lytta_Wasi_Importer
 
     private function is_pro_licensed()
     {
-        // Implement a robust license check later. For now, we assume if any key exists it's active.
-        return !empty($this->config['license_key']);
+        return lytta_wasi_is_pro();
     }
 
     public function run_import($atts = [])

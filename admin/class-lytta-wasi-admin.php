@@ -23,6 +23,9 @@ class Lytta_Wasi_Admin
     {
         register_setting('lytta_wasi_plugin_page', 'lytta_wasi_settings', array($this, 'sanitize_settings'));
 
+        // Admin Notices Hook
+        add_action('admin_notices', array($this, 'plugin_dependencies_notices'));
+
         add_settings_section(
             'lytta_wasi_plugin_page_section',
             __('Wasi Configuration', 'lytta-wasi-sync'),
@@ -40,7 +43,6 @@ class Lytta_Wasi_Admin
         add_settings_field('email_report', __('Email Report', 'lytta-wasi-sync'), array($this, 'email_report_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('sync_limit', __('Sync Limit (Properties per run)', 'lytta-wasi-sync'), array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('sync_frequency', __('Cron Frequency', 'lytta-wasi-sync'), array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
-        add_settings_field('mapping', __('Category Mapping', 'lytta-wasi-sync'), array($this, 'mapping_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
     }
 
     public function sanitize_settings($input)
@@ -55,6 +57,9 @@ class Lytta_Wasi_Admin
         $sanitized['sync_limit'] = absint($input['sync_limit']);
         $sanitized['sync_frequency'] = sanitize_key($input['sync_frequency']);
         $sanitized['mapping'] = wp_kses_post($input['mapping']);
+
+        // Cleanup Old legacy v11 cron if it exists
+        wp_clear_scheduled_hook('lytta_wasi_event_v11');
 
         // Schedule cron if frequency changed
         $old_options = get_option('lytta_wasi_settings');
@@ -87,8 +92,27 @@ class Lytta_Wasi_Admin
         if ($active_tab == 'contact') {
             require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/contact-page.php';
         }
+        elseif ($active_tab == 'mapping') {
+            require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/mapping-page.php';
+        }
         else {
             require_once plugin_dir_path(dirname(__FILE__)) . 'admin/views/settings-page.php';
+        }
+    }
+
+    public function plugin_dependencies_notices()
+    {
+        if (!current_user_can('manage_options'))
+            return;
+
+        $options = get_option('lytta_wasi_settings', []);
+        $target = isset($options['target_platform']) ? $options['target_platform'] : 'directorist';
+
+        if ($target === 'directorist' && !defined('ATBDP_VERSION')) {
+            echo '<div class="notice notice-error is-dismissible"><p><strong>Wasi Sync PRO:</strong> ' . esc_html__('You selected Directorist as the target platform, but the Directorist plugin is not active!', 'lytta-wasi-sync') . '</p></div>';
+        }
+        elseif ($target === 'acf' && !class_exists('ACF')) {
+            echo '<div class="notice notice-error is-dismissible"><p><strong>Wasi Sync PRO:</strong> ' . esc_html__('You selected ACF as the target platform, but the Advanced Custom Fields plugin is not active!', 'lytta-wasi-sync') . '</p></div>';
         }
     }
 
@@ -154,14 +178,6 @@ class Lytta_Wasi_Admin
             <option value='daily' " . selected($val, 'daily', false) . ">" . esc_html__('Once a day', 'lytta-wasi-sync') . "</option>
             <option value='weekly' " . selected($val, 'weekly', false) . ">" . esc_html__('Once a week', 'lytta-wasi-sync') . "</option>
         </select>";
-    }
-
-    public function mapping_render()
-    {
-        $options = get_option('lytta_wasi_settings');
-        $val = isset($options['mapping']) ? esc_textarea($options['mapping']) : '';
-        echo "<textarea name='lytta_wasi_settings[mapping]' rows='5' cols='50' class='large-text code'>{$val}</textarea>";
-        echo "<p class='description'>" . wp_kses_post(__('Format: <code>WASI_ID=Category Name</code>. Multiple IDs can be comma separated. One rule per line.<br>E.g. <code>2,14=Apartamento</code>.', 'lytta-wasi-sync')) . "</p>";
     }
 
 }

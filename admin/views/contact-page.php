@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
     
     <h2 class="nav-tab-wrapper">
         <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab"><?php esc_html_e('Base API Settings', 'lytta-wasi-sync'); ?></a>
+        <a href="?page=lytta-wasi-sync&tab=mapping" class="nav-tab"><?php esc_html_e('Category Mapping', 'lytta-wasi-sync'); ?></a>
         <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab nav-tab-active"><?php esc_html_e('Contact, Support & PRO License', 'lytta-wasi-sync'); ?></a>
     </h2>
 
