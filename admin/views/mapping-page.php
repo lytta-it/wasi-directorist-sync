@@ -26,8 +26,18 @@ if (isset($_POST['lytta_wasi_mapping_nonce']) && wp_verify_nonce($_POST['lytta_w
             }
         }
     }
-
     $options['mapping'] = implode("\n", $new_mapping);
+
+    if (isset($_POST['wasi_field_map']) && is_array($_POST['wasi_field_map'])) {
+        $field_mapping = [];
+        foreach ($_POST['wasi_field_map'] as $wasi_key => $wp_meta_key) {
+            $cleaned = sanitize_text_field(trim($wp_meta_key));
+            if (!empty($cleaned)) {
+                $field_mapping[sanitize_key($wasi_key)] = $cleaned;
+            }
+        }
+        $options['field_mapping'] = $field_mapping;
+    }
     update_option('lytta_wasi_settings', $options);
 
     echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Mapping saved logically!', 'lytta-wasi-sync') . '</p></div>';
@@ -47,6 +57,8 @@ foreach ($lines as $line) {
         }
     }
 }
+
+$current_field_mapping = isset($options['field_mapping']) && is_array($options['field_mapping']) ? $options['field_mapping'] : [];
 ?>
 
 <div class="wrap">
@@ -71,7 +83,7 @@ else {
 
     <h2 class="nav-tab-wrapper">
         <a href="?page=lytta-wasi-sync&tab=settings" class="nav-tab"><?php esc_html_e('Base API Settings', 'lytta-wasi-sync'); ?></a>
-        <a href="?page=lytta-wasi-sync&tab=mapping" class="nav-tab nav-tab-active"><?php esc_html_e('Category Mapping', 'lytta-wasi-sync'); ?></a>
+        <a href="?page=lytta-wasi-sync&tab=mapping" class="nav-tab nav-tab-active"><?php esc_html_e('Data & Category Mapping', 'lytta-wasi-sync'); ?></a>
         <a href="?page=lytta-wasi-sync&tab=contact" class="nav-tab"><?php esc_html_e('Contact, Support & PRO License', 'lytta-wasi-sync'); ?></a>
     </h2>
 
@@ -159,6 +171,48 @@ else:
 ?>
                     </tbody>
                 </table>
+
+                <h3 style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;"><?php esc_html_e('Advanced Field Mapping', 'lytta-wasi-sync'); ?></h3>
+                <p><?php esc_html_e('Link mathematical attributes from Wasi (Price, Bedrooms, etc.) directly to your Theme\'s custom Meta Keys. If left blank, they will be saved automatically as wasi_ attribute keys.', 'lytta-wasi-sync'); ?></p>
+
+                <table class="wp-list-table widefat fixed striped" style="margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;"><strong><?php esc_html_e('Wasi Variable', 'lytta-wasi-sync'); ?></strong></th>
+                            <th style="width: 50%;"><strong><?php esc_html_e('Your Custom Meta Key (Optional)', 'lytta-wasi-sync'); ?></strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+        $fields_to_map = [
+            'sale_price' => __('Sale Price', 'lytta-wasi-sync'),
+            'rent_price' => __('Rent Price', 'lytta-wasi-sync'),
+            'built_area' => __('Built Area (m2)', 'lytta-wasi-sync'),
+            'bedrooms' => __('Bedrooms', 'lytta-wasi-sync'),
+            'bathrooms' => __('Bathrooms', 'lytta-wasi-sync'),
+            'floor' => __('Floor', 'lytta-wasi-sync'),
+            'stratum' => __('Stratum', 'lytta-wasi-sync'),
+            'zip_code' => __('ZIP / Postal Code', 'lytta-wasi-sync'),
+            'city_label' => __('City', 'lytta-wasi-sync'),
+            'address' => __('Full Address', 'lytta-wasi-sync'),
+            'all_features' => __('All Features (Comma-separated string)', 'lytta-wasi-sync')
+        ];
+
+        foreach ($fields_to_map as $w_key => $w_label) {
+            $saved_val = isset($current_field_mapping[$w_key]) ? $current_field_mapping[$w_key] : '';
+?>
+                            <tr>
+                                <td><?php echo esc_html("wasi_{$w_key} ({$w_label})"); ?></td>
+                                <td>
+                                    <input type="text" name="wasi_field_map[<?php echo esc_attr($w_key); ?>]" value="<?php echo esc_attr($saved_val); ?>" placeholder="e.g. acf_property_price" class="regular-text" style="width:100%; max-width: 300px;">
+                                </td>
+                            </tr>
+                            <?php
+        }
+?>
+                    </tbody>
+                </table>
+
                 <p class="submit">
                     <input type="submit" class="button button-primary" value="<?php esc_attr_e('Save Mapping', 'lytta-wasi-sync'); ?>">
                 </p>

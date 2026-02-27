@@ -57,10 +57,18 @@ class Lytta_Adapter_ACF
 
     public function map_fields($post_id, $immobile, $wasi_id, $descrizione, $plan_id)
     {
+        $options = get_option('lytta_wasi_settings', []);
+        $field_mapping = isset($options['field_mapping']) ? $options['field_mapping'] : [];
+
+        $get_meta_key = function ($wasi_slug) use ($field_mapping) {
+            return !empty($field_mapping[$wasi_slug]) ? $field_mapping[$wasi_slug] : 'wasi_' . $wasi_slug;
+        };
+
         // 1. AUTO-MAPPING: Dump all Wasi attributes natively so nothing is lost
         foreach ($immobile as $key => $val) {
             if (is_scalar($val) && strval($val) !== '') {
-                update_post_meta($post_id, 'wasi_' . sanitize_key($key), sanitize_text_field(strval($val)));
+                $meta_k = $get_meta_key($key);
+                update_post_meta($post_id, $meta_k, sanitize_text_field(strval($val)));
             }
         }
 
@@ -73,7 +81,8 @@ class Lytta_Adapter_ACF
                 $feature_names[] = trim($f['nombre']);
         }
         if (!empty($feature_names)) {
-            update_post_meta($post_id, 'wasi_all_features', sanitize_text_field(implode(', ', $feature_names)));
+            $meta_k = $get_meta_key('all_features');
+            update_post_meta($post_id, $meta_k, sanitize_text_field(implode(', ', $feature_names)));
         }
 
         // 2. SPECIFIC ACF MAPPING: Core fields for easy template access
