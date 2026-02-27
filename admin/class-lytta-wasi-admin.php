@@ -40,6 +40,7 @@ class Lytta_Wasi_Admin
 
         add_settings_field('company_id', __('Company ID', 'lytta-wasi-sync'), array($this, 'company_id_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('token', __('Token', 'lytta-wasi-sync'), array($this, 'token_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
+        add_settings_field('acf_cpt_slug', __('ACF Custom Post Type Slug', 'lytta-wasi-sync'), array($this, 'acf_cpt_slug_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('email_report', __('Email Report', 'lytta-wasi-sync'), array($this, 'email_report_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('sync_limit', __('Sync Limit (Properties per run)', 'lytta-wasi-sync'), array($this, 'sync_limit_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
         add_settings_field('sync_frequency', __('Cron Frequency', 'lytta-wasi-sync'), array($this, 'sync_frequency_render'), 'lytta_wasi_plugin_page', 'lytta_wasi_plugin_page_section');
@@ -51,6 +52,7 @@ class Lytta_Wasi_Admin
 
         $sanitized['license_key'] = isset($input['license_key']) ? sanitize_text_field($input['license_key']) : '';
         $sanitized['target_platform'] = isset($input['target_platform']) ? sanitize_text_field($input['target_platform']) : 'directorist';
+        $sanitized['acf_cpt_slug'] = isset($input['acf_cpt_slug']) && !empty($input['acf_cpt_slug']) ? sanitize_title(trim($input['acf_cpt_slug'])) : 'property';
         $sanitized['company_id'] = sanitize_text_field($input['company_id']);
         $sanitized['token'] = sanitize_text_field($input['token']);
         $sanitized['email_report'] = sanitize_email($input['email_report']);
@@ -133,6 +135,14 @@ class Lytta_Wasi_Admin
             <option value='acf' " . selected($val, 'acf', false) . ">" . esc_html__('Advanced Custom Fields (ACF Standard) Module', 'lytta-wasi-sync') . "</option>
         </select>";
         echo "<p class='description'>" . esc_html__('Choose where to save the properties downloaded from Wasi into WordPress.', 'lytta-wasi-sync') . "</p>";
+    }
+
+    public function acf_cpt_slug_render()
+    {
+        $options = get_option('lytta_wasi_settings');
+        $val = isset($options['acf_cpt_slug']) && !empty($options['acf_cpt_slug']) ? esc_attr($options['acf_cpt_slug']) : 'property';
+        echo "<input type='text' name='lytta_wasi_settings[acf_cpt_slug]' value='{$val}' class='regular-text code' placeholder='property' required>";
+        echo "<p class='description'>" . esc_html__('Applicable only if Target is ACF. Enter slug (e.g., "property"). Enter "post" to save properties as standard blog posts.', 'lytta-wasi-sync') . "</p>";
     }
 
     public function company_id_render()

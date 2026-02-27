@@ -6,6 +6,37 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+if (isset($_POST['lytta_purge_nonce']) && wp_verify_nonce($_POST['lytta_purge_nonce'], 'lytta_purge_action')) {
+    if (!current_user_can('manage_options')) {
+        wp_die(__('Unauthorized user', 'lytta-wasi-sync'));
+    }
+
+    $args = array(
+        'post_type' => 'any',
+        'post_status' => 'any',
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+        'meta_query' => array(
+                array(
+                'key' => 'wasi_id',
+                'compare' => 'EXISTS',
+            ),
+        ),
+    );
+
+    $query = new WP_Query($args);
+    $deleted_count = 0;
+
+    if (!empty($query->posts)) {
+        foreach ($query->posts as $post_id) {
+            wp_delete_post($post_id, true);
+            $deleted_count++;
+        }
+    }
+
+    echo '<div class="notice notice-success is-dismissible"><p><strong>' . esc_html(sprintf(__('Danger Zone: Successfully eradicated %d imported properties from the database.', 'lytta-wasi-sync'), $deleted_count)) . '</strong></p></div>';
+}
 ?>
 
 <div class="wrap">
@@ -56,4 +87,15 @@ if (!defined('ABSPATH')) {
             </p>
         </div>
     </div>
+
+    <!-- DANGER ZONE -->
+    <div style="margin-top: 40px; padding: 20px; border: 2px solid #dc3232; border-radius: 4px; background: #fbeaea; max-width: 800px;">
+        <h3 style="color: #dc3232; margin-top: 0;">⚠️ <?php esc_html_e('Danger Zone: Data Purge', 'lytta-wasi-sync'); ?></h3>
+        <p><strong><?php esc_html_e('This action is irreversible.', 'lytta-wasi-sync'); ?></strong> <?php esc_html_e('Clicking the button below will permanently delete ALL properties that were imported by Wasi Sync from this WordPress installation. It will not affect properties you created manually.', 'lytta-wasi-sync'); ?></p>
+        <form method="post" action="" onsubmit="return confirm('<?php esc_js(esc_attr__('Are you absolutely sure you want to PERMANENTLY delete all imported Wasi properties? This cannot be undone.', 'lytta-wasi-sync')); ?>');">
+            <?php wp_nonce_field('lytta_purge_action', 'lytta_purge_nonce'); ?>
+            <input type="submit" class="button" style="background: #dc3232; color: #fff; border-color: #dc3232;" value="<?php esc_attr_e('Purge All Imported Properties', 'lytta-wasi-sync'); ?>">
+        </form>
+    </div>
+
 </div>

@@ -24,12 +24,15 @@ class Lytta_Adapter_ACF
 
     public function map_post_args($wasi_id, $title, $desc_html, $author_id)
     {
+        $options = get_option('lytta_wasi_settings', []);
+        $cpt_slug = isset($options['acf_cpt_slug']) && !empty($options['acf_cpt_slug']) ? $options['acf_cpt_slug'] : 'property';
+
         return [
             'post_title' => $title,
             'post_content' => wp_kses_post($desc_html),
             'post_excerpt' => wp_trim_words(strip_tags($desc_html), 20),
             'post_status' => 'draft',
-            'post_type' => 'property', // ACF logic usually acts on "property" CPT
+            'post_type' => $cpt_slug,
             'post_author' => $author_id,
         ];
     }

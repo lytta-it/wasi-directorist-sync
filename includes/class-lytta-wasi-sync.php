@@ -30,6 +30,7 @@ class Lytta_Wasi_Sync
         $this->load_dependencies();
         $this->set_locale();
         $this->define_admin_hooks();
+        $this->define_public_hooks();
         $this->define_cron_hooks();
         $this->init_github_updater();
     }
@@ -63,6 +64,70 @@ class Lytta_Wasi_Sync
         $plugin_admin = new Lytta_Wasi_Admin($this->get_plugin_name(), $this->get_version());
         add_action('admin_menu', array($plugin_admin, 'add_plugin_admin_menu'));
         add_action('admin_init', array($plugin_admin, 'register_settings'));
+    }
+
+    private function define_public_hooks()
+    {
+        add_action('init', array($this, 'register_custom_post_type'));
+    }
+
+    public function register_custom_post_type()
+    {
+        $options = get_option('lytta_wasi_settings');
+        $target = isset($options['target_platform']) ? $options['target_platform'] : 'directorist';
+        if ($target === 'acf') {
+            $cpt_slug = isset($options['acf_cpt_slug']) && !empty($options['acf_cpt_slug']) ? $options['acf_cpt_slug'] : 'property';
+
+            // Native standard formats are ignored
+            if ($cpt_slug === 'post' || $cpt_slug === 'page') {
+                return;
+            }
+
+            $labels = array(
+                'name' => _x('Properties', 'Post Type General Name', 'lytta-wasi-sync'),
+                'singular_name' => _x('Property', 'Post Type Singular Name', 'lytta-wasi-sync'),
+                'menu_name' => __('Properties', 'lytta-wasi-sync'),
+                'all_items' => __('All Properties', 'lytta-wasi-sync'),
+                'add_new_item' => __('Add New Property', 'lytta-wasi-sync'),
+                'add_new' => __('Add New', 'lytta-wasi-sync'),
+            );
+            $args = array(
+                'label' => __('Property', 'lytta-wasi-sync'),
+                'labels' => $labels,
+                'supports' => array('title', 'editor', 'thumbnail', 'revisions', 'custom-fields'),
+                'hierarchical' => false,
+                'public' => true,
+                'show_ui' => true,
+                'show_in_menu' => true,
+                'menu_position' => 25,
+                'menu_icon' => 'dashicons-admin-home',
+                'show_in_admin_bar' => true,
+                'show_in_nav_menus' => true,
+                'can_export' => true,
+                'has_archive' => true,
+                'exclude_from_search' => false,
+                'publicly_queryable' => true,
+                'capability_type' => 'post',
+                'show_in_rest' => true,
+            );
+            register_post_type($cpt_slug, $args);
+
+            $tax_labels = array(
+                'name' => _x('Property Categories', 'taxonomy general name', 'lytta-wasi-sync'),
+                'singular_name' => _x('Property Category', 'taxonomy singular name', 'lytta-wasi-sync'),
+                'menu_name' => __('Categories', 'lytta-wasi-sync'),
+            );
+            $tax_args = array(
+                'hierarchical' => true,
+                'labels' => $tax_labels,
+                'show_ui' => true,
+                'show_admin_column' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => 'property-category'),
+                'show_in_rest' => true,
+            );
+            register_taxonomy('property_category', array($cpt_slug), $tax_args);
+        }
     }
 
     private function define_cron_hooks()
