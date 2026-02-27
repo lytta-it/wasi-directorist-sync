@@ -57,9 +57,26 @@ class Lytta_Adapter_ACF
 
     public function map_fields($post_id, $immobile, $wasi_id, $descrizione, $plan_id)
     {
-        // Instead of obscure meta keys like _custom-number-2, we map to clean native meta keys 
-        // that ACF developers can target seamlessly.
+        // 1. AUTO-MAPPING: Dump all Wasi attributes natively so nothing is lost
+        foreach ($immobile as $key => $val) {
+            if (is_scalar($val) && strval($val) !== '') {
+                update_post_meta($post_id, 'wasi_' . sanitize_key($key), sanitize_text_field(strval($val)));
+            }
+        }
 
+        // Also dump a flat list of all features
+        $feature_names = [];
+        $wasi_features = isset($immobile['features']) ? $immobile['features'] : [];
+        $all_feat = array_merge(isset($wasi_features['internal']) ? $wasi_features['internal'] : [], isset($wasi_features['external']) ? $wasi_features['external'] : []);
+        foreach ($all_feat as $f) {
+            if (isset($f['nombre']))
+                $feature_names[] = trim($f['nombre']);
+        }
+        if (!empty($feature_names)) {
+            update_post_meta($post_id, 'wasi_all_features', sanitize_text_field(implode(', ', $feature_names)));
+        }
+
+        // 2. SPECIFIC ACF MAPPING: Core fields for easy template access
         update_post_meta($post_id, 'wasi_id', sanitize_text_field($wasi_id));
 
         $price = 0;

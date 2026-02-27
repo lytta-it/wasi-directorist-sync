@@ -123,6 +123,26 @@ class Lytta_Adapter_Directorist
 
     public function map_fields($post_id, $immobile, $wasi_id, $descrizione, $plan_id)
     {
+        // 1. AUTO-MAPPING: Dump all Wasi attributes natively so nothing is lost
+        foreach ($immobile as $key => $val) {
+            if (is_scalar($val) && strval($val) !== '') {
+                update_post_meta($post_id, 'wasi_' . sanitize_key($key), sanitize_text_field(strval($val)));
+            }
+        }
+
+        // Also dump a flat list of all features
+        $feature_names = [];
+        $wasi_features = isset($immobile['features']) ? $immobile['features'] : [];
+        $all_feat = array_merge(isset($wasi_features['internal']) ? $wasi_features['internal'] : [], isset($wasi_features['external']) ? $wasi_features['external'] : []);
+        foreach ($all_feat as $f) {
+            if (isset($f['nombre']))
+                $feature_names[] = trim($f['nombre']);
+        }
+        if (!empty($feature_names)) {
+            update_post_meta($post_id, 'wasi_all_features', sanitize_text_field(implode(', ', $feature_names)));
+        }
+
+        // 2. SPECIFIC DIRECTORIST MAPPING
         if ($plan_id > 0) {
             update_post_meta($post_id, '_plan_id', $plan_id);
             update_post_meta($post_id, '_fm_plans', $plan_id);
